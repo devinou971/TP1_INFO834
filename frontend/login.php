@@ -8,11 +8,12 @@ include("./database.php")
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="./ressources/style.css">
 </head>
 <body>
+    <h1>Connexion</h1>
+    <main>
     <?php
-        
-
         if(isset($_POST) && isset($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["email"]) && !empty($_POST["password"])){
             $sql_prep = $conn->prepare("SELECT name, firstname, id FROM user WHERE email = ? and password = ?");
             $sql_prep->bind_param("ss", $_POST["email"], $_POST["password"]);
@@ -52,16 +53,18 @@ include("./database.php")
         }
         $conn->close();
     ?>
-    <form action="login.php" method="post">
-        <div>
-            <label for="email">email</label>
-            <input type="text" name="email" id="email">
-        </div>
-        <div>
-            <label for="password">password</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <input type="submit" value="Se connecter">
-    </form>
+
+        <form action="login.php" method="post">
+            <div>
+                <label for="email">email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <label for="password">password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <input type="submit" value="Se connecter">
+        </form>
+    </main>
 </body>
 </html>

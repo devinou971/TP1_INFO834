@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from time import time
 from os import environ
 from dotenv import load_dotenv
-load_dotenv(".env")
+load_dotenv("backend/.env")
 
 REDIS_IP = environ.get("REDIS_IP")
 PORT = environ.get("PORT")
@@ -21,6 +21,7 @@ def connection():
     connection_data = request.form
     id = connection_data["id"]
     authorized = True
+    
     if r.exists(f"conn:{id}"):
         results = r.lrange(f"conn:{id}", 0, 9)
         connection_times = []
@@ -63,7 +64,7 @@ def acces_achat():
 @app.route("/stats", methods= ["POST"])
 def get_stats():
     # On récup tous les users et leurs connections
-    
+
     all_users_keys = r.keys("conn:*")
     all_user_connections = []
     for k in all_users_keys:
