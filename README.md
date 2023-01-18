@@ -33,3 +33,11 @@ python3 backend/main.py
 ``` 
 
 Puis on peut lancer le frontend avec apache.
+
+## Explications 
+
+J'ai choisi de faire une API Flask car c'est plus simple pour étendre les fonctionnalités.
+
+Pour déterminer si l'utilisateur peut se connecter, j'ai inséré dans la base de données Redis tous les horaires de conexions. A partir de cela, je peux déter miner si un utlisateur a déja 10 sessions d'ouvertes en 10min.
+
+Je fais la même chose pour les services d'achats et de ventes, juste pour que l'on puisse avoir des statistiques exactes pour chaque client. 
